@@ -15,16 +15,7 @@
 #define PIN_NUM_BL     GPIO_NUM_4
 
 esp_err_t lcd_init(void);
-
-void lcd_command(uint8_t cmd);
-void lcd_data(uint8_t data);
-
 void lcd_clear(void);
-
-void lcd_set_pixel(uint8_t x,uint8_t y,bool color);
-
 void lcd_update(void);
-
-void lcd_draw_char(uint8_t x,uint8_t y,char c);
-
-void lcd_draw_string(uint8_t x,uint8_t y,const char *str);
+void lcd_draw_char(uint8_t x, uint8_t page, char ch);
+void lcd_draw_string(uint8_t x, uint8_t page, const char *str);
