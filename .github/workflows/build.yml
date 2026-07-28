@@ -1,9 +1,8 @@
-name: Build ESP8684
+name: Build ESP-IDF
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -11,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: ESP-IDF Build
+      - name: Build ESP-IDF
         uses: espressif/esp-idf-ci-action@v1
         with:
-          esp_idf_version: v5.5
+          esp_idf_version: v5.3
           target: esp32c2
-          command: idf.py build
 
-      - name: Upload Firmware
+      - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
+          name: esp32c2-bin
           path: |
             build/*.bin
             build/bootloader/*.bin
