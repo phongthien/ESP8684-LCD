@@ -1,7 +1,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
+#include "esp_log.h"
 
+static const char *TAG = "LED";
 #define LED_GPIO GPIO_NUM_4
 
 void app_main(void)
@@ -10,10 +12,12 @@ void app_main(void)
     gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
 
     while (1) {
-        gpio_set_level(LED_GPIO, 1);
+        ESP_LOGI(TAG, "LED ON");
+        gpio_set_level(GPIO_NUM_4, 1);
         vTaskDelay(pdMS_TO_TICKS(500));
-
-        gpio_set_level(LED_GPIO, 0);
+    
+        ESP_LOGI(TAG, "LED OFF");
+        gpio_set_level(GPIO_NUM_4, 0);
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
