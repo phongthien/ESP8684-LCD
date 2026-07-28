@@ -12,30 +12,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Arduino CLI
-        uses: arduino/setup-arduino-cli@v2
+      - uses: arduino/setup-arduino-cli@v2
 
       - name: Update index
         run: arduino-cli core update-index
 
       - name: Install ESP32 Core
         run: |
-          arduino-cli core update-index
-          arduino-cli core install esp32:esp32@3.3.2
-
-      - name: Install U8g2
-        run: |
-          arduino-cli lib install "U8g2"
+          arduino-cli core install esp32:esp32
 
       - name: Compile
         run: |
           arduino-cli compile \
-            --fqbn esp32:esp32:esp32c3 \
+            --fqbn esp32:esp32:esp32c2 \
             --output-dir build \
             .
 
       - name: Upload BIN
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: build/
+          name: ESP8684_BIN
+          path: build/*
