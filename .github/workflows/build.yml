@@ -24,6 +24,8 @@ jobs:
 
     - name: Build
       run: |
+        pio platform update
+        pio pkg update
         pio run
 
     - name: Upload BIN
