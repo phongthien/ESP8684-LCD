@@ -30,7 +30,7 @@ jobs:
       - name: Compile
         run: |
           arduino-cli compile \
-            --fqbn esp32:esp32:esp32c2 \
+            --fqbn esp32:esp32:esp32c3 \
             --output-dir build \
             .
 
