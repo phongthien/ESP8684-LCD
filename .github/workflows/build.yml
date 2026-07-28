@@ -22,6 +22,10 @@ jobs:
         run: |
           arduino-cli core update-index
           arduino-cli core install esp32:esp32@3.3.2
+      - name: Patch boards.txt
+        run: |
+          BOARDS="$HOME/.arduino15/packages/esp32/hardware/esp32/3.3.11/boards.txt"
+          sed -i 's/bootloader_qio_60m.elf/bootloader_qio_40m.elf/g' "$BOARDS"
 
       - name: Install U8g2
         run: |
